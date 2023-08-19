@@ -33,7 +33,9 @@ fi
       #wget ${urlbase}/${myurl} -P plugins
       
       echo "install ${jenkdst} install-plugin  /root/workspace/jenkinstest/plugins/${arr[0]}.hpi"
-      ${jenkdst} install-plugin  "/root/workspace/jenkinstest/plugins/${arr[0]}.hpi"
+      #${jenkdst} install-plugin  "/root/workspace/jenkinstest/plugins/${arr[0]}.hpi"
+      ${jenkdst} install-plugin  ${plugin}
+      #${jenkdst} install-plugin  ${urlbase}/${myurl}
 
       #echo "create plugins.txt: $plugin"
       #echo "$plugin" >> plugins.txt
