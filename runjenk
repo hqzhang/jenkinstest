@@ -1,0 +1,17 @@
+#!/bin/bash
+
+job=Football
+user=hongqi
+token=b3923d9729b371fad60d46a8d3dbac44
+url="127.0.0.1:8080"
+
+echo "Trigger a build"
+buildNo0=$(curl -X GET http://${user}:${token}@${url}/job/${job}/lastBuild/buildNumber)
+curl -I -X POST http://${user}:${token}@${url}/job/${job}/build
+
+sleep 10
+echo "get job logs"
+buildNo=$(curl -X GET http://${user}:${token}@${url}/job/${job}/lastBuild/buildNumber)
+curl -X POST http://${user}:${token}@${url}/job/${job}/lastBuild/consoleText 
+
+echo "build logs From:$buildNo0 to $buildNo"
