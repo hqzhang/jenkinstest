@@ -2,7 +2,7 @@
 //    Declarative Pipeline
 pipeline {
     agent any
-
+    myfile
     stages {
         stage('Build') {
             steps {
