@@ -4,7 +4,6 @@
   echo "download plugins "
   urlbase="http://updates.jenkins-ci.org/download/plugins"
 
-  
   plugins=`cat plugins.txt`
   echo "plugins=$plugins"
 
