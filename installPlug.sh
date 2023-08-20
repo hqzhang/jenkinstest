@@ -24,7 +24,7 @@ fi
   echo "install plugins on target"
   plugins=`cat plugins.txt`
   echo "plugins=$plugins"
-
+  java -jar jenkins-cli.jar -s http://${urldst}/ login --username hongqi --password a568Pqt
   for plugin in ${plugins}
   do
       arr=(`echo $plugin| tr ":" "\n"`)
@@ -32,8 +32,8 @@ fi
       #echo "download plugin wget ${urlbase}/${myurl} -P plugins"
       #wget ${urlbase}/${myurl} -P plugins
       
-      echo "install ${jenkdst} install-plugin  /root/workspace/jenkinstest/plugins/${arr[0]}.hpi"
-      ${jenkdst} install-plugin  "/root/workspace/jenkinstest/plugins/${arr[0]}.hpi"
+      #echo "install ${jenkdst} install-plugin  -remoting ./plugins/${arr[0]}.hpi"
+      ${jenkdst} install-plugin  "./plugins/${arr[0]}.hpi"
       #${jenkdst} install-plugin  ${plugin}
       #${jenkdst} install-plugin  ${urlbase}/${myurl}
 
