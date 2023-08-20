@@ -24,7 +24,6 @@ fi
   echo "install plugins on target"
   plugins=`cat plugins.txt`
   echo "plugins=$plugins"
-  java -jar jenkins-cli.jar -s http://${urldst}/ login --username hongqi --password a568Pqt
   for plugin in ${plugins}
   do
       arr=(`echo $plugin| tr ":" "\n"`)
