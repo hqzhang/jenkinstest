@@ -30,9 +30,9 @@ fi
       myurl="${arr[0]}/${arr[1]}/${arr[0]}.hpi"
       #echo "download plugin wget ${urlbase}/${myurl} -P plugins"
       #wget ${urlbase}/${myurl} -P plugins
-      
+      cp "./plugins/${arr[0]}.hpi" /root/.jenkins/plugins/${arr[0]}.jpi
       #echo "install ${jenkdst} install-plugin  -remoting ./plugins/${arr[0]}.hpi"
-      ${jenkdst} install-plugin  "./plugins/${arr[0]}.hpi"
+      #${jenkdst} install-plugin  "./plugins/${arr[0]}.hpi"
       #${jenkdst} install-plugin  ${plugin}
       #${jenkdst} install-plugin  ${urlbase}/${myurl}
 
