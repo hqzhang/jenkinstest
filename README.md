@@ -1,4 +1,23 @@
 Install Jenkins Offline
+sudo systemctl stop jenkins
+
+Move the existing Jenkins data to the new location:
+sudo rsync -av /root/.jenkins/ /home/hognqi/.jenkins/
+
+Change the ownership of the new jenkins_home directory:
+sudo chown -R hongqi:hongqi /home/username/.jenkins
+
+
+Update the Jenkins configuration to use the new jenkins_home directory:
+
+
+sudo vim /etc/sysconfig/jenkins 
+Set JENKINS_HOME="/home/hongqi/.jenkins"
+
+
+Start the Jenkins service again:
+
+sudo systemctl start jenkins
 1) download war
 wget https://updates.jenkins.io/download/war/2.401.3/jenkins.war
 2) download plugins
