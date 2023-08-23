@@ -1,5 +1,15 @@
 Install Jenkins Offline
+
+1. yum install java-11-openjdk-devel
+or 
+
+
 sudo systemctl stop jenkins
+
+1. Install OpenJDK
+yum install java-11-openjdk-devel
+
+1) rpm -iv 
 
 Move the existing Jenkins data to the new location:
 sudo rsync -av /root/.jenkins/ /home/hognqi/.jenkins/
