@@ -1,33 +1,60 @@
-Install Jenkins Offline
+#Install Jenkins Offline
+
+0.subscription-manager register --username hongqi.zhang@ibm.com --password xxxx --auto-attach
+
+0. yum update
 
 1. yum install java-11-openjdk-devel
-or 
+
+2. rpm -iv nginx-1.20.1-1.el7.ngx.x86_64.rpm
+
+rpm -iv nginx-1.20.1-1.el7.ngx.x86_64.rpm
+ 
+service nginx status
+systemctl status nginx.service
+   
+3. set for file server
+systemctl stop nginx
+
+cd workspace/jenkinstest/
+cp nginx.conf /etc/nginx/nginx.conf 
+   
+4. update files
+ mkdir -p /usr/share/nginx/html/files
+ cp update-center.json /usr/share/nginx/html/files/
+  
+  sudo chmod -R 755 /usr/share/nginx/html/files
+  sudo chown -R nginx:nginx /usr/share/nginx/html/files
+   
+  systemctl start nginx
+  systemctl status nginx
 
 
-sudo systemctl stop jenkins
 
-1. Install OpenJDK
-yum install java-11-openjdk-devel
+0.Stop jenkins
+   sudo systemctl stop jenkins
 
-1) rpm -iv 
+1. create jenkins home
+   sudo mkdir ~/jenkins
+2. Now copy all the content from original Jenkins home to this directory,
+  `cp -rvf /varlib/jenkins/* ~/jenkins
 
-Move the existing Jenkins data to the new location:
-sudo rsync -av /root/.jenkins/ /home/hognqi/.jenkins/
+3. put export JENKINS_HOME=~/jenkins into ~/.bash_profile
 
-Change the ownership of the new jenkins_home directory:
-sudo chown -R hongqi:hongqi /home/username/.jenkins
+4. Start jenkins sudo service jenkins restart
 
+1. Move the existing Jenkins data to the new location:
+  sudo rsync -av /root/.jenkins/ /home/hognqi/.jenkins/
 
-Update the Jenkins configuration to use the new jenkins_home directory:
+2. Change the ownership of the new jenkins_home directory:
+  sudo chown -R hongqi:hongqi /home/username/.jenkins
 
+3. Update the Jenkins configuration to use the new jenkins_home directory:
+  sudo vim /etc/sysconfig/jenkins 
+  Set JENKINS_HOME="/home/hongqi/.jenkins"
 
-sudo vim /etc/sysconfig/jenkins 
-Set JENKINS_HOME="/home/hongqi/.jenkins"
-
-
-Start the Jenkins service again:
-
-sudo systemctl start jenkins
+4. Start the Jenkins service again:
+  sudo systemctl start jenkins
 1) download war
 wget https://updates.jenkins.io/download/war/2.401.3/jenkins.war
 2) download plugins
